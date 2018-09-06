@@ -1,0 +1,115 @@
+.openerp .oe_models {
+    overflow-x: auto;
+    margin-top: 25px;
+}
+
+.openerp .oe_models table {
+    width: 100%;
+}
+
+.openerp .oe_models td {
+    padding: 3px;
+    text-align: right;
+}
+
+.openerp .oe_models th {
+    text-align: center;
+    color: #069;
+    font-family: 'Helvetica Neue', Arial, Verdana, 'Nimbus Sans L', sans-serif;
+    /*font-size: 10px;*/
+    background: #eee;
+    min-width: 47px;
+}
+
+.openerp .oe_models_add_row td,
+.openerp .oe_models_new_row td {
+    text-align: left;
+}
+
+.openerp .oe_models_add_row .oe_form_field_many2one {
+    display: inline-block;
+}
+
+.openerp .oe_models_add_row {
+    margin-bottom: 20px;
+}
+
+.oe_models_add_row .o_form_field_many2one {
+    float: left;
+}
+.oe_measurebar_table .row_delete button{
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+}
+.oe_measurebar_table .row_delete span{
+    color:rgb(24,140,117);
+}
+.oe_measurebar_table .row_delete span:hover button{
+    color:rgb(255,255,255);
+    background-color: rgb(24,140,117);
+}
+.oe_models_add_row .o_form_input_dropdown {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+
+}
+
+.oe_models_add_row .ui-autocomplete-input {
+    padding-left: 5px;
+    font-size: 16px;
+}
+
+.oe_models_add_row .oe_highlight {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.openerp td input.oe_product_cell {
+    width: 20px;
+}
+
+.openerp tr.oe_model_row > td.oe-input-field,
+.openerp tr.oe_model_copy_row > th {
+    margin: 0px;
+    padding: 0px;
+}
+
+.openerp tr.oe_model_row > td > input[type="text"],
+.openerp tr.oe_model_copy_row > th > input[type="text"] {
+    border: none;
+    background-color: transparent;
+    border-radius: 0%;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px 5px;
+}
+
+td.row_delete {
+    width: 5px;
+}
+
+.openerp td button.oe_i {
+    border: none;
+    background: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.openerp .hatch {
+    background: #fff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAJ37979zwjjgzjKysqMYAEYB8RmROaABAAFug+bVs5NCQAAAABJRU5ErkJggg==) repeat;
+}
+
+#copy_to_all {
+    border: none;
+    background: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+

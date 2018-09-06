@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+    <t t-name="AttributeModels">
+        <div class="oe_models">
+            <div t-if="!widget.get('effective_readonly')" class="btn-group oe_models_add_row">
+                <button id="add_row" class="oe_highlight btn btn-primary btn-sm o_form_button_save">Add Model</button>
+            </div>
+
+            <table t-foreach="widget.get('measurebars')" t-as="bar"
+                   t-attf-class="oe_measurebar_table bar-{{ bar.id }} table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            <span t-esc="bar.name"/>
+                        </th>
+                        <th t-foreach="bar.values" t-as="value">
+                            <span t-esc="value.name"/>
+                        </th>
+                        <th>Total</th>
+                        <th>Price</th>
+                        <t t-if="! widget.get('effective_readonly')">
+                            <th/>
+                        </t>
+                    </tr>
+                    <t t-if="! widget.get('effective_readonly')">
+                        <tr class="oe_model_copy_row">
+                            <th>Copy</th>
+                            <th t-foreach="bar.values" t-as="value">
+                                <input type="text"
+                                       t-attf-class="oe_product_cell oe-copy-input-field attribute-{{ value.id }}"/>
+                            </th>
+                            <th/>
+                            <th/>
+                            <th>
+                                <button id="copy_to_all" type="button">
+                                    <i class="fa fa-play"/>
+                                </button>
+                            </th>
+                        </tr>
+                    </t>
+                </thead>
+                <tbody>
+                    <tr t-foreach="bar.models" t-as="model"
+                        t-attf-class="oe_model_row model-{{ model.product_template_id }}">
+                        <td>
+                            <span t-esc="model.name"/>
+                        </td>
+                        <t t-foreach="model.products" t-as="product">
+                            <td t-if="!product.id" class="hatch"/>
+                            <t t-if="widget.get('effective_readonly')">
+                                <td t-if="product.id">
+                                    <span t-esc="product.quantity" t-attf-class="product-{{ product.id }}"/>
+                                </td>
+                            </t>
+                            <t t-if="! widget.get('effective_readonly')">
+                                <td t-if="product.id" class="oe-input-field">
+                                    <input type="text"
+                                           t-attf-class="oe_product_cell product-{{ product.id }} oe-product-input-field attribute-{{ product.attribute_id }}"/>
+                                </td>
+                            </t>
+                        </t>
+                        <td class="oe_total_quantity">
+                            <span t-esc="model.total_quantity"/>
+                        </td>
+                        <td class="oe_total_price">
+                            <span t-esc="widget.format_currency(model.total_price)"/>
+                        </td>
+                        <t t-if="! widget.get('effective_readonly')">
+                            <td class="row_delete">
+                                <button class="oe_i" type="button"><span class="fa fa-trash-o"></span></button>
+                            </td>
+                        </t>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </t>
+</templates>

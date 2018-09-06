@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_variant_automatic_product_variant_automatic,product_variant_automatic.product_variant_automatic,model_product_variant_automatic_product_variant_automatic,,1,0,0,0

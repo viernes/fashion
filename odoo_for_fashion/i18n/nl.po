@@ -1,0 +1,163 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* common_models
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-22 08:30+0000\n"
+"PO-Revision-Date: 2015-09-22 10:38+0100\n"
+"Last-Translator: Brecht Verhaeghe <brecht.verhaeghe@accomodata.be>\n"
+"Language-Team: Kranksoft <info@krankosft.be>\n"
+"Language: Dutch\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#. module: common_models
+#. openerp-web
+#: code:addons/common_models/static/src/xml/models_widget.xml:7
+#, python-format
+msgid "Add"
+msgstr "Voeg toe"
+
+#. module: common_models
+#: field:product.template,model_attribute:0
+msgid "Attribute grouping"
+msgstr "Kenmerk groepering"
+
+#. module: common_models
+#: view:base.config.settings:common_models.view_base_config
+msgid "Attribute options"
+msgstr "Kenmerk opties"
+
+#. module: common_models
+#. openerp-web
+#: code:addons/common_models/static/src/xml/models_widget.xml:24
+#, python-format
+msgid "Copy"
+msgstr "Kopiëer"
+
+#. module: common_models
+#: field:product.template.tag,create_uid:0
+msgid "Created by"
+msgstr "Aangemaakt door"
+
+#. module: common_models
+#: field:product.template.tag,create_date:0
+msgid "Created on"
+msgstr "Aangemaakt om"
+
+#. module: common_models
+#: field:base.config.settings,default_model_attribute:0
+msgid "Default attribute grouping"
+msgstr "Standaard kenmerk groepering"
+
+#. module: common_models
+#: view:base.config.settings:common_models.view_base_config
+msgid "General Settings"
+msgstr "Algemene instellingen"
+
+#. module: common_models
+#: field:product.template.model,id:0 field:product.template.tag,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: common_models
+#: field:product.template.tag,write_uid:0
+msgid "Last Updated by"
+msgstr "Laatste update door"
+
+#. module: common_models
+#: field:product.template.tag,write_date:0
+msgid "Last Updated on"
+msgstr "Laatste update op"
+
+#. module: common_models
+#: view:base.config.settings:common_models.view_base_config
+msgid "Measures and colors"
+msgstr "Maten en kleuren"
+
+#. module: common_models
+#: view:base.config.settings:common_models.view_base_config
+msgid "Module integration"
+msgstr "Module integratie"
+
+#. module: common_models
+#: field:product.template.tag,name:0
+msgid "Name"
+msgstr "Naam"
+
+#. module: common_models
+#: model:ir.model,name:common_models.model_product_template
+msgid "Product Template"
+msgstr "Product sjabloon"
+
+#. module: common_models
+#: field:product.template.tag,product_template_ids:0
+msgid "Product template ids"
+msgstr "Product sjabloon ids"
+
+#. module: common_models
+#. openerp-web
+#: code:addons/common_models/static/src/xml/models_widget.xml:8
+#, python-format
+msgid "Sync"
+msgstr "Sync"
+
+#. module: common_models
+#: view:product.template:common_models.product_template_search_view
+msgid "Tag"
+msgstr "Label"
+
+#. module: common_models
+#: field:product.template,ad_tag_ids:0
+msgid "Tags"
+msgstr "Labels"
+
+#. module: common_models
+#: view:product.template:common_models.product_template_form_view
+msgid "Tags..."
+msgstr "Labels..."
+
+#. module: common_models
+#: field:base.config.settings,module_purchase_models:0
+msgid "Use O4F on purchases"
+msgstr "Gebruik O4F bij aankopen"
+
+#. module: common_models
+#: field:base.config.settings,module_sale_models:0
+msgid "Use O4F on sales"
+msgstr "Gebruik O4F bij aankopen"
+
+#. module: common_models
+#: view:base.config.settings:common_models.view_base_config
+msgid ""
+"Use o4wfr to group a product(model) by an attribute\n"
+"                        for faster creation of quotations, orders and "
+"invoices."
+msgstr ""
+"Gebruik Odoo 4 Fashion om een product (model) te groeperen op een kenmerk\n"
+"voor snellere creatie van offertes, orders en facturen."
+
+#. module: common_models
+#: field:product.template.model,name:0
+msgid "name"
+msgstr "naam"
+
+#. module: common_models
+#. openerp-web
+#: code:addons/common_models/static/src/xml/models_widget.xml:17
+#, python-format
+msgid "price"
+msgstr "prijs"
+
+#. module: common_models
+#. openerp-web
+#: code:addons/common_models/static/src/xml/models_widget.xml:16
+#, python-format
+msgid "total"
+msgstr "totaal"
