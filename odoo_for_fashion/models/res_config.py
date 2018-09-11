@@ -49,7 +49,7 @@ class base_config_settings(models.TransientModel):
         of all available fields.
         """
 
-        default = self.env['ir.defaults'].sudo().get('product.template', 'model_attribute',
+        default = self.env['ir.default'].sudo().get('product.template', 'model_attribute',
                                                      company_id=self.company_id.id or self.env.user.company_id.id)
         if default is not None:
             return {
@@ -60,7 +60,7 @@ class base_config_settings(models.TransientModel):
 
     @api.multi
     def set_values(self):
-        super(ResConfigSettings, self).set_values()
-        default = self.env['ir.defaults'].sudo().set('product.template', 'model_attribute',
+        super(base_config_settings, self).set_values()
+        default = self.env['ir.default'].sudo().set('product.template', 'model_attribute',
                                           self.default_model_attribute and self.default_model_attribute.id or False,
                                           company_id=self.company_id.id or self.env.user.company_id.id)

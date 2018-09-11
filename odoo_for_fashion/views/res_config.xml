@@ -6,82 +6,84 @@
             <field name="model">res.config.settings</field>
             <field name="inherit_id" ref="base.res_config_settings_view_form"/>
             <field name="arch" type="xml">
-                <form position="inside">
-                    <separator string="Measures and colors"/>
-                    <p>
-                        Use Odoo 4 Fashion to group a product(model) by an attribute
-                        for faster creation of quotations, orders and invoices.
-                    </p>
-                    <group>
-                        <label for="id" string="Attribute options"/>
-                        <div>
-                            <label for="default_model_attribute"/>
-                            <field name="default_model_attribute" class="oe_inline"/>
-                        </div>
-                    </group>
-                    <group>
-                        <label for="id" string="Module integration"/>
-                        <div name="module_integration">
-                            <div name="module_product_tags">
-                                <field name="module_product_tags" class="oe_inline"/>
-                                <label for="module_product_tags"/>
-                            </div>
-                            <div name="module_sale_models">
-                                <field name="module_sale_models" class="oe_inline"/>
-                                <label for="module_sale_models"/>
-                            </div>
-                            <div name="module_purchase_models">
-                                <field name="module_purchase_models" class="oe_inline"/>
-                                <label for="module_purchase_models"/>
-                            </div>
-                            <div name="module_account_models">
-                                <field name="module_account_models" class="oe_inline"/>
-                                <label for="module_account_models"/>
-                            </div>
-                            <div name="module_product_models_pricelist">
-                                <field name="module_product_models_pricelist" class="oe_inline"/>
-                                <label for="module_product_models_pricelist"/>
-                            </div>
-                            <div name="module_product_cost">
-                                <field name="module_product_cost" class="oe_inline"/>
-                                <label for="module_product_cost"/>
-                            </div>
-                            <div name="module_product_barcode">
-                                <field name="module_product_barcode" class="oe_inline"/>
-                                <label for="module_product_barcode"/>
-                            </div>
-                            <div name="module_product_barcode_generator">
-                                <field name="module_product_barcode_generator" class="oe_inline"/>
-                                <label for="module_product_barcode_generator"/>
-                            </div>
-                            <div name="module_website_multi_image_zoom">
-                                <field name="module_website_multi_image_zoom" class="oe_inline"/>
-                                <label for="module_website_multi_image_zoom"/>
-                            </div>
-                            <!--<div name="module_stock_models">
-                                <field name="module_stock_models" class="oe_inline"/>
-                                <label for="module_stock_models"/>
-                            </div>-->
-                        </div>
-                    </group>
-                </form>
-                <form position="inside">
-                    <separator string="POS Improvements"/>
-                    <group>
-                        <label for="id" string="Module integration"/>
-                        <div name="module_integration">
-                            <div name="module_pos_visual_improvements">
-                                <field name="module_pos_visual_improvements" class="oe_inline"/>
-                                <label for="module_pos_visual_improvements"/>
-                            </div>
-                            <div name="module_pos_receipt_note">
-                                <field name="module_pos_receipt_note" class="oe_inline"/>
-                                <label for="module_pos_receipt_note"/>
-                            </div>
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Inventory" string="OF4" data-key="stock" groups="stock.group_stock_manager">
 
-                        </div>
-                    </group>
-                </form>
+                        <h2>Measures and colors</h2>
+                        <p>
+                            Use Odoo 4 Fashion to group a product(model) by an attribute
+                            for faster creation of quotations, orders and invoices.
+                        </p>
+                        <group>
+                            <label for="id" string="Attribute options"/>
+                            <div>
+                                <label for="default_model_attribute"/>
+                                <field name="default_model_attribute" class="oe_inline"/>
+                            </div>
+                        </group>
+                        <group>
+                            <label for="id" string="Module integration"/>
+                            <div name="module_integration">
+                                <div name="module_product_tags">
+                                    <field name="module_product_tags" class="oe_inline"/>
+                                    <label for="module_product_tags"/>
+                                </div>
+                                <div name="module_sale_models">
+                                    <field name="module_sale_models" class="oe_inline"/>
+                                    <label for="module_sale_models"/>
+                                </div>
+                                <div name="module_purchase_models">
+                                    <field name="module_purchase_models" class="oe_inline"/>
+                                    <label for="module_purchase_models"/>
+                                </div>
+                                <div name="module_account_models">
+                                    <field name="module_account_models" class="oe_inline"/>
+                                    <label for="module_account_models"/>
+                                </div>
+                                <div name="module_product_models_pricelist">
+                                    <field name="module_product_models_pricelist" class="oe_inline"/>
+                                    <label for="module_product_models_pricelist"/>
+                                </div>
+                                <div name="module_product_cost">
+                                    <field name="module_product_cost" class="oe_inline"/>
+                                    <label for="module_product_cost"/>
+                                </div>
+                                <div name="module_product_barcode">
+                                    <field name="module_product_barcode" class="oe_inline"/>
+                                    <label for="module_product_barcode"/>
+                                </div>
+                                <div name="module_product_barcode_generator">
+                                    <field name="module_product_barcode_generator" class="oe_inline"/>
+                                    <label for="module_product_barcode_generator"/>
+                                </div>
+                                <div name="module_website_multi_image_zoom">
+                                    <field name="module_website_multi_image_zoom" class="oe_inline"/>
+                                    <label for="module_website_multi_image_zoom"/>
+                                </div>
+                                <!--<div name="module_stock_models">
+                                    <field name="module_stock_models" class="oe_inline"/>
+                                    <label for="module_stock_models"/>
+                                </div>-->
+                            </div>
+                        </group>
+
+                        <h2>POS Improvements</h2>
+                        <group>
+                            <label for="id" string="Module integration"/>
+                            <div name="module_integration">
+                                <div name="module_pos_visual_improvements">
+                                    <field name="module_pos_visual_improvements" class="oe_inline"/>
+                                    <label for="module_pos_visual_improvements"/>
+                                </div>
+                                <div name="module_pos_receipt_note">
+                                    <field name="module_pos_receipt_note" class="oe_inline"/>
+                                    <label for="module_pos_receipt_note"/>
+                                </div>
+
+                            </div>
+                        </group>
+                    </div>
+                </xpath>
             </field>
         </record>
     </data>
