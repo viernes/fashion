@@ -1,0 +1,1 @@
+from . import automatic_variant_wizard
