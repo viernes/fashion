@@ -1,26 +1,32 @@
 odoo.define('common_models.model_widget', function (require) {
 
     var core = require('web.core');
+    var Widget= require('web.Widget');
+    var widgetRegistry = require('web.widget_registry');
+    var FieldManagerMixin = require('web.FieldManagerMixin');
+
     var data = require('web.data');
-    var form_common = require('web.form_common');
-    var formats = require('web.formats');
-    var Model = require('web.DataModel');
     var time = require('web.time');
     var utils = require('web.utils');
 
     var QWeb = core.qweb;
     var _t = core._t;
 
-    var model_widget = form_common.FormWidget.extend(form_common.ReinitializeWidgetMixin, {
+    var model_widget = Widget.extend(FieldManagerMixin, {
+            custom_events: _.extend({}, FieldManagerMixin.custom_events, {
+                field_changed: function(event) {
+                    this.field_changed(event);
+                },
+            }),
             events: {
                 "click #sync_models": "update_order_lines",
                 "click .row_delete>button": "delete_row",
                 "click #copy_to_all": "copy_to_all"
             },
-            init: function () {
-                this._super.apply(this, arguments);
+            init: function (parent, model, state) {
+                this._super(parent);
+                FieldManagerMixin.init.call(this);
                 var self = this;
-
                 self.updating = false;
                 self.initialized = false;
                 self.reload_after_save = false;
@@ -29,7 +35,7 @@ odoo.define('common_models.model_widget', function (require) {
                 var lines = {order_lines: []};
                 localStorage.setItem("order_lines", JSON.stringify(lines));
                 self.common_quantity_name = ''; // generalisation of the quantity name
-                switch (self.view.dataset.model) {
+                switch (model.model) {
                     case 'sale.order':
                         self.common_quantity_name = 'product_uom_qty';
                         self.common_lines_name = 'order_line';
@@ -47,8 +53,10 @@ odoo.define('common_models.model_widget', function (require) {
                 }
 
                 // Original save function is overwritten in order to wait all running deferreds to be done before actually applying the save.
-                this.view.original_save = _.bind(this.view.save, this.view);
-                this.view.save = function (prepend_on_create) {
+
+                this.model.original_save = _.bind(this.model.save, model);
+                this.model.save = function (prepend_on_create) {
+                    console.log('save')
                     self.prepend_on_create = prepend_on_create;
 
                     if (!self.get("effective_readonly")) {
@@ -57,24 +65,25 @@ odoo.define('common_models.model_widget', function (require) {
                     //self.update_order_lines(false);
                     return $.when.apply($, self.defs).then(function () {
                         self.reload_after_save = true;
-                        return self.view.original_save(self.prepend_on_create);
+                        return self.model.original_save(self.prepend_on_create);
                     });
                 };
 
-                this.field_manager.on("field_changed:" + self.common_lines_name, this, function () {
-                    if (self.updating || !self.initialized) {
-                        return;
-                    }
-                    self.update_models();
-                });
+                self.initialize_content();
 
-                this.field_manager.on("field_changed:name", this, function () {
-                    if (self.updating || !self.initialized) {
-                        return;
-                    }
-                    self.initialize_content();
-                });
             },
+
+            field_changed: function(ev) {
+                if (self.updating || !self.initialized) {
+                    return;
+                }
+                if (env == 'name') {
+                    self.initialize_content();
+                }else if(env in ('order_line','invoice_line_ids')){
+                    self.update_models();
+                }
+            },
+
             copy_to_all: function (event) {
                 var self = this;
                 if (event) {
@@ -99,27 +108,17 @@ odoo.define('common_models.model_widget', function (require) {
                 })
             },
             initialize_content: function () {
+                console.log('hola');
                 var self = this;
-
                 self.destroy_content();
-                new Model(self.view.model).call("get_model_lines",
-                    {
-                        'context': new data.CompoundContext(
-                            {
-                                'user_id': self.get('user_id'),
-                                'id': self.view.datarecord.id
-                            })
-                    })
-                    .then(function (result) {
-                        self.querying = true;
+                this._rpc({
+                    model: model.model,
+                    method: 'get_model_lines',
+                    args: [JSON.parse(this.value).invoice_id, id],
+                }).then(function () {
+                    self.trigger_up('reload');
+                });
 
-                        self.set('measurebars', result);
-
-                        self.querying = false;
-                    })
-                    .then(function () {
-                        self.display_data();
-                    });
                 //self.convert_to_models();
             },
             execute_on_products: function (bar_id, model_id, product_id, product_func) {
@@ -734,7 +733,8 @@ odoo.define('common_models.model_widget', function (require) {
         })
         ;
 
-    core.form_custom_registry.add('model_widget', model_widget);
+    widgetRegistry.add(
+        'model_widget', model_widget
+    );
 
-})
-;
+});
