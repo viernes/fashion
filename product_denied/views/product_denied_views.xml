@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="product_denied_form" model="ir.ui.view">
+            <field name="name">product.denied.form</field>
+            <field name="model">product.denied</field>
+            <field name="arch" type="xml">
+                 <form string="Product">
+                     <sheet>
+                         <group>
+                             <field name='name'/>
+                             <field name='date'/>
+                         </group>
+                     </sheet>
+                 </form>
+            </field>
+        </record>
+
+        <record id="product_denied_tree" model="ir.ui.view">
+            <field name="name">product.denied.tree</field>
+            <field name="model">product.denied</field>
+            <field name="arch" type="xml">
+                 <tree string="Product" delete="false" create="false">
+                     <field name='name'/>
+                     <field name='date'/>
+                     <field name="sale_id"/>
+                     <field name="partner_id"/>
+
+                 </tree>
+            </field>
+        </record>
+
+         <record id="action_product_denied" model="ir.actions.act_window">
+            <field name="name">Productos de negados</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.denied</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="product_denied_tree"/>
+        </record>
+
+         <menuitem id="product_denied_menu"
+            name="Apartado de negados"
+            parent="sale.sale_menu_root"
+            sequence="2"/>
+
+         <menuitem id="product_denied_action_menu"
+            parent="product_denied_menu"
+            action="action_product_denied"
+            sequence="3"/>
+
+
+    </data>
+</openerp>
