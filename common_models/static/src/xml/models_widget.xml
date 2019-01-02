@@ -3,9 +3,9 @@
 <templates>
     <t t-name="AttributeModels">
         <div class="oe_models">
-            <div t-if="!widget.get('effective_readonly')" class="btn-group oe_models_add_row">
+            <!--div t-if="!widget.get('effective_readonly')" class="btn-group oe_models_add_row">
                 <button id="add_row" class="oe_highlight btn btn-primary btn-sm o_form_button_save">Add Model</button>
-            </div>
+            </div-->
 
             <table t-foreach="widget.get('measurebars')" t-as="bar"
                    t-attf-class="oe_measurebar_table bar-{{ bar.id }} table table-striped table-bordered">

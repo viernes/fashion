@@ -50,11 +50,11 @@ class account_invoice(models.Model):
 
     @api.model
     def get_model_lines(self):
-        measurebars = {}
-        my_id = self.env.context.get('id', self.id)
 
+        measurebars = {}
+        my_id = self.env.context.get('object_id', self.id)
         model_sequence = 0
-        for line in self.invoice_line_ids.search([['ad_is_model_variant', '=', True], ['invoice_id', '=', my_id]], order='id'):
+        for line in self.order_line.search([('order_id', '=', int(my_id))], order='id'):
             model_attribute = line.product_id.product_tmpl_id.model_attribute
             model = line.product_id.product_tmpl_id
             product = line.product_id
@@ -62,8 +62,11 @@ class account_invoice(models.Model):
             # create measurebar if necessary
             if model_attribute.id not in measurebars.keys():
 
-                all_vals = self.env['product.attribute.value']\
-                    .search([('attribute_id', '=', model_attribute.id)])
+                all_vals = self.env['product.attribute.value'] \
+                    .search(
+                        [('attribute_id', '=', model_attribute.id)],
+                        order='name'
+                        )
 
                 values = []
                 for val in all_vals:
@@ -72,7 +75,6 @@ class account_invoice(models.Model):
                         'name': val.name,
                     })
 
-                values = sorted(values, key=lambda k: k['name'])
                 measurebars[model_attribute.id] = {
                     'name': model_attribute.name,
                     'id': model_attribute.id,
@@ -89,7 +91,7 @@ class account_invoice(models.Model):
                     for variant in model.product_variant_ids:
                         for var_val in variant.attribute_value_ids:
                             if val['id'] == var_val.id:
-                                #Value in variant
+                                # Value in variant
                                 values.append({
                                     'attribute_id': val['id'],
                                     'attribute_name': val['name'],
@@ -112,7 +114,7 @@ class account_invoice(models.Model):
                     if val_found:
                         continue
 
-                    #value not found
+                    # value not found
                     tmp_values.append({
                         'id': False,
                         'attribute_id': val['id'],
@@ -134,27 +136,26 @@ class account_invoice(models.Model):
                         'name': model.model_attribute.name,
                     },
                     'products': values,
-                    'taxes': ', '.join(map(lambda x: x.name, line.invoice_line_tax_ids)),
+                    'taxes': ', '.join(map(lambda x: x.name, model.taxes_id)),
                     'total_quantity': 0.0,
                     'total_price': 0.0,
                     'image': image,
                     'product_template_id': model.id,
                     'sale_order_id': self.id,
-                    'origin': line.origin,
                 }
                 model_sequence += 1
 
             bar_model = bar['models'][model.id]
             for prod in bar_model['products']:
                 if prod['id'] == product.id:
-                    prod['quantity'] = line.quantity
+                    prod['quantity'] = line.product_uom_qty
                     prod['price'] = line.price_subtotal
                     prod['order_line_id'] = line.id
                     prod['price_unit'] = line.price_unit
                     prod['discount'] = line.discount
 
         # remove dicts
-        measurebars = measurebars.values()
+        measurebars = list(measurebars.values())
         for bar in measurebars:
             bar['models'] = sorted(bar['models'].values(), key=lambda x: x['model_sequence'])
             for model in bar['models']:
