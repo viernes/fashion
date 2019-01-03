@@ -17,18 +17,18 @@
 ##############################################################################
 #
 
-from odoo import models, fields, api
-
-class procurement_order(models.Model):
-    _inherit = 'procurement.order'
-    _name = 'procurement.order'
-
-    ad_is_model_variant = fields.Boolean()
-
-    @api.v7
-    def _get_po_line_values_from_proc(self, cr, uid, procurement, partner, company, schedule_date, context=None):
-
-        res = super(procurement_order, self)._get_po_line_values_from_proc(cr, uid, procurement, partner, company, schedule_date, context=context)
-        res['ad_is_model_variant'] = procurement.ad_is_model_variant
-
-        return res
+# from odoo import models, fields, api
+#
+# class procurement_order(models.Model):
+#     _inherit = 'procurement.order'
+#     _name = 'procurement.order'
+#
+#     ad_is_model_variant = fields.Boolean()
+#
+#     @api.v7
+#     def _get_po_line_values_from_proc(self, cr, uid, procurement, partner, company, schedule_date, context=None):
+#
+#         res = super(procurement_order, self)._get_po_line_values_from_proc(cr, uid, procurement, partner, company, schedule_date, context=context)
+#         res['ad_is_model_variant'] = procurement.ad_is_model_variant
+#
+#         return res

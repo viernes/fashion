@@ -54,7 +54,7 @@ class account_invoice(models.Model):
         measurebars = {}
         my_id = self.env.context.get('object_id', self.id)
         model_sequence = 0
-        for line in self.order_line.search([('order_id', '=', int(my_id))], order='id'):
+        for line in self.invoice_line_ids.search([('invoice_id', '=', int(my_id))], order='id'):
             model_attribute = line.product_id.product_tmpl_id.model_attribute
             model = line.product_id.product_tmpl_id
             product = line.product_id

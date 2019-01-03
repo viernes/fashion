@@ -8,10 +8,11 @@
             <field name="inherit_id" ref="purchase.purchase_order_form"/>
             <field name="arch" type="xml">
                 <data>
-                    <xpath expr="//page" position="before">
+                    <xpath expr="//page"  position="before">
                             <page string="Models">
-                                <widget type="model_widget">
-                                </widget>
+                                    <widget name="model_widget"/>
+                                    <div class="oe_clear"/>
+
                                 <group class="oe_subtotal_footer oe_right" colspan="2" name="ad_ro_sale_total">
                                     <field name="ad_ro_amount_untaxed" widget='monetary'
                                            options="{'currency_field': 'currency_id'}"/>
