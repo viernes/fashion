@@ -37,7 +37,7 @@ biedt Accomodata Odoo 4 Wholesale & (Fashion) Retail!
     'website': 'http://www.accomodata.be/wholesale-fashion-retail.php',
     'author': 'Accomodata',
     'depends': [
-        'base',
+        'base','web',
         'product', 'website_sale',
     ],
     'data': [
